@@ -10,7 +10,7 @@
 - name: Ensure Pritunl client is installed.
   yum:
     name: pritunl-client
-    enablerepo: pritunl
+    enablerepo: epel,pritunl
 
 # service
 - name: Ensure Pritunl client is started and enabled to start at boot.

@@ -16,7 +16,7 @@ None.
 Dependencies
 ------------
 
-None.
+- shomatan.repo-epel
 
 Example Playbook
 ----------------
