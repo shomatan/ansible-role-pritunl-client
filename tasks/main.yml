@@ -1,0 +1,23 @@
+---
+- name: Add Pritunl repository.
+  yum_repository:
+    name: pritunl
+    description: Pritunl Stable Repository
+    baseurl: https://repo.pritunl.com/stable/yum/centos/{{ ansible_distribution_major_version }}/
+    gpgcheck: no
+    enabled: no
+
+- name: Ensure Pritunl client is installed.
+  yum:
+    name: pritunl-client
+    enablerepo: pritunl
+
+# service
+- name: Ensure Pritunl client is started and enabled to start at boot.
+  service: name=pritunl-client state=started enabled=yes
+  when: ansible_connection != 'docker'
+
+# clean up
+- name: Purge yum cache.
+  command: yum clean all
+  when: ansible_connection == 'docker'
